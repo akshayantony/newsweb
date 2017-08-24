@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>SayoneNews</title>
+    <style>
+        ul {list-style-type: none;}
+    </style>
+</head>
+
+<body>
+
+  <div align="center" color="orange">
+            <h1><a href="">SayOne News</a></h1>
+  </div>
+{% if latest_news_list %}
+    <ul>
+        <div>
+        {% for latest in latest_news_list %}
+            <div>
+               <h2><li><a href="#">{{latest.title}}</a></li></h2>
+            </div>
+            <div>
+                <li>{{latest.content}}</li>
+            </div>
+        {% endfor %}
+        </div>
+    </ul>
+{% else %}
+    <p>Sorry, No News Available!</p>
+{% endif %}
+</body>
+
+</html>
