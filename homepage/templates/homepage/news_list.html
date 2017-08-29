@@ -1,33 +1,65 @@
+<!DOCTYPE html>
 <html>
+{% load staticfiles %}
 
-<head>
-    <title>SayoneNews</title>
-    <style>
-        ul {list-style-type: none;}
-    </style>
-</head>
+{% block head %} {% include "./header.html" %} {% endblock head %}
 
 <body>
+<div class="container">
+{% block navbar %} {% include "./navbar.html" %} {% endblock navbar %}
 
-  <div align="center" color="orange">
-            <h1><a href="">SayOne News</a></h1>
-  </div>
-{% if latest_news_list %}
-    <ul>
-        <div>
-        {% for latest in latest_news_list %}
-            <div>
-               <h2><li><a href="#">{{latest.title}}</a></li></h2>
-            </div>
-            <div>
-                <li>{{latest.content}}</li>
-            </div>
-        {% endfor %}
-        </div>
-    </ul>
-{% else %}
-    <p>Sorry, No News Available!</p>
-{% endif %}
+
+        <div class="row">
+
+            {% block newslist %}
+
+              {% if latest_news_list %}
+                  <div class="col-sm-8 col-md-8 newscater">
+                      <ul>
+                             <div class="news">
+                                 {% for latest in latest_news_list %}
+                                     <div class="news-header">
+                                         <h2><li><a href="{% url 'homepage:newsdetail' latest.id %}">{{latest.title}}</a></li></h2>
+                                     </div>
+
+                                     <div class="news_body">
+                                         <li>{{latest.content|safe|truncatewords:"20"}}</li>
+                                         <a href="{% url 'homepage:newsdetail' latest.id %}">read more</a>
+                                         <br>
+                                         {% if latest.images %}
+                                         <img src="{{ latest.images.url }}" alt="Profile Picture" width="200"/>
+                                         {%endif%}
+                                     </div>
+                                  {% endfor %}
+                              </div>
+                        </ul>
+                  </div>
+               {% else %}
+                   <p>Sorry, No News Available!</p>
+               {% endif %}
+            {% endblock newslist %}
+
+<!--
+                  <div class="col-sm-4 col-md-4 col-lg-4 list-group newscater">
+                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span> Business </a>
+                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>Entertainment</a>
+                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>Sports</a>
+                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>Tech</a>
+                  </div>
+-->
+                 {% if categ_news %}
+                      <div class="col-sm-4 col-md-4 list-group newscater">
+                          {% for categories in categ_news %}
+                              <a href="{% url 'homepage:categorylist' categories.cname %}" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>{{categories.cname}}</a>
+                          {% endfor %}
+                      </div>
+                 {% endif %}
+              </div>
+
+
+</div>
+
+{% block footer %} {% include "./footer.html"%} {% endblock footer %}
 </body>
 
 </html>

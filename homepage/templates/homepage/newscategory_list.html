@@ -1,0 +1,24 @@
+{% extends "./news_list.html" %}
+
+        {% block newslist %}
+            {% if categ_news_list %}
+                <div class="col-sm-8 col-md-8 newscater">
+                      <ul>
+                           <div class="news">
+                               {% for latest in categ_news_list %}
+                                      <div class="news-header">
+                                          <h2><li><a href="{% url 'homepage:newsdetail' latest.id %}">{{latest.title}}</a></li></h2>
+                                      </div>
+
+                                       <div class="news_body">
+                                            <li>{{latest.content|safe|truncatewords:"15"|linebreaks}}</li>
+                                            <a href="{% url 'homepage:newsdetail' latest.id %}">read more</a>
+                                       </div>
+                               {% endfor %}
+                           </div>
+                      </ul>
+                </div>
+            {% else %}
+                <p>Sorry, No News Available!</p>
+            {% endif %}
+        {% endblock newslist %}
