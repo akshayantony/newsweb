@@ -42,7 +42,7 @@ class CategoryView(generic.ListView):
     paginate_by = 3
 
     def get_queryset(self,**kwargs):
-        return News.objects.filter(category=self.kwargs['categ'])
+        return News.objects.filter(category__cname=self.kwargs['categ'])
 
 
 def search(request):

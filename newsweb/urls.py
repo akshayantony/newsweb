@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from signup import views as core_views
 urlpatterns = [
-    url(r'^',include('homepage.urls')),
+    url(r'^',include('homepage.urls'),name='homepage'),
     url(r'^admin/', admin.site.urls),
 
     url(r'^signup/$', core_views.signup, name='signup'),
