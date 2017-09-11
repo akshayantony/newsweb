@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_social_share',
     'django.contrib.sites',
     'django_comments',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'newsweb.urls'
@@ -86,9 +88,13 @@ WSGI_APPLICATION = 'newsweb.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd1spar5oe6dt6s',
+        'USER': 'zezahlmonozwch',
+        'PASSWORD':'7473140105f2f62b6cd09a9a98bfffa389f44ef0c7c688759011d214faa4d428',
+        'HOST': 'ec2-174-129-193-169.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -161,7 +167,3 @@ SITE_ID=1
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
