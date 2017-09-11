@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'newsweb.wsgi.application'
 DATABASES = {
 'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd1spar5oe6dt6s',
-        'USER': 'zezahlmonozwch',
-        'PASSWORD':'7473140105f2f62b6cd09a9a98bfffa389f44ef0c7c688759011d214faa4d428',
-        'HOST': 'ec2-174-129-193-169.compute-1.amazonaws.com',
+        'NAME': 'd6tipofrjgl39u',
+        'USER': 'zcnierdxzhbwnd',
+        'PASSWORD':'e21686d7e14d72d5ecd14530b1828f142d150e35c8f4046945fd1b95078fee01',
+        'HOST': 'ec2-107-22-171-11.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
