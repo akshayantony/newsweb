@@ -1,0 +1,8 @@
+
+  <form method="POST" enctype="multipart/form-data" >
+     {% csrf_token %}
+     <h2>Newsimages:</h2>
+
+     {{ form.as_p }}
+     <p><input type="submit" value=Add></p>
+ </form>

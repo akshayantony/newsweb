@@ -1,24 +1,71 @@
-<html>
-{% load staticfiles %}
-<head>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% extends "./news_list.html" %}
+{% load static %}
+{% load social_share %}
+{% load comments %}
 
-</head>
-<body>
+
+{% block newslist %}
+
 {% if error_message %}
 <p>{{error_message}}</p>
 {% endif %}
-    <h1> {{ news.title }} </h1>
-<p>
 
-    {{ news.content }}
-    <br>
-    {% if news.images %}
-    <img src="{{ news.images.url }}" alt="Profile Picture" width="200"/>
-    {% endif %}
-</p>
-</body>
-</html>
+
+<div class="container">
+    <div class="row">
+        <hr>
+        <div class="col-sm-2 col-md-2 sharediv" >
+            Share your news:
+            <a href="https://www.facebook.com/sharer.php?u=http://127.0.0.1:8000/dailycircle/1/">fb</a><br>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//127.0.0.1%3A8000{{get_absolute_url}}">fb11</a><br>
+            {% post_to_facebook news.news_id %}<br>
+            {% post_to_gplus  news.news_id  %}<br>
+        </div>
+
+
+        <div class="col-sm-6 col-md-6">
+            <div>
+                <h1> {{ news.title }} </h1>
+            </div>
+            <div style="color:red">
+               By: {{news.author}} | Created:{{ news.created_date }}
+            </div>
+            <br>
+            <div>
+                {{ news.content }}
+            </div>
+
+            <div>
+                {% for related_new in related_news %}
+                    <img src=" {{related_new.img.url }}" alt="Profile Picture" width="200"/>
+                {%endfor%}
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4" >
+             <div class="col-sm-4 col-md-4" >
+                {% if user.is_authenticated %}
+                    {% if news.author == user.username %}
+                        <a href="{% url 'homepage:addnewsimages' news.id%}">Add images to your news?</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% block comments %} {% include "./comments.html"  %} {% endblock comments %}
+
+        </div>
+
+<script>
+$("#id_submit").click(function(){
+      $.ajax( {url: '/comments/post/', type:'post', data: $("#post_comments").serialize(),
+          success: function (){
+                 $("#refresh_this_div").load(" #refresh_this_div");
+                 $("#post_comments")[0].reset();
+          } } );
+
+
+});
+</script>
+{% endblock newslist %}
+        {% block addnews %}{% endblock addnews %}
+</div>
+</div>
+

@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'homepage',
     'signup',
+    'django_social_share',
+    'django.contrib.sites',
+    'django_comments',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +53,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'newsweb.urls'
@@ -64,6 +71,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  # this
+                'social_django.context_processors.login_redirect',  # and this
             ],
         },
     },
@@ -120,9 +130,31 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-MEDIA_URL = '/modelimages/'
+MEDIA_URL = '/img/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'modelimages')
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'homepage:news_list'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'akshayantony55'
+EMAIL_HOST_PASSWORD ='akshay123@'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'The Daily Circles News <noreply@example.com>'
+
+AUTHENTICATION_BACKENDS=(
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_FACEBOOK_KEY = '1768613143436454'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'bda5308acc8ca50f9b4ef4864f3ba1d9'  # App Secret
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1051118390483-pnfpc9soqke3rkes668j1r5rdi35b676.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qUeX9bSL-PxExct_CAuw4NYU'
+
+SITE_ID=1

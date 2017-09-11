@@ -1,27 +1,35 @@
- <div class="page-header container col-sm-12 col-md-12" align="center" color="orange">
-          <h1><a href="">The DailyCircles News</a></h1>
+<div class="page-header container col-sm-12 col-md-12" align="center" xmlns="http://www.w3.org/1999/html">
+    <div id="logo">
+        <div id="logo_text">
+          <h1><a href="">The Daily<span class="logo_colour">Circles</a></h1>
+            <h2>Daily news.</h2>
+        </div>
       </div>
+</div>
 <div class="row">
       <div class="col-sm-8 col-md-8">
-          <nav class="navbar navbar-default">
+          <nav class="navbar navbar-default" id="testnav" style="background:#122647;">
               <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">The DailyCircles</a></li>
-                  <li class="menu-item"><a href="#"><span class="fa fa-home" style="margin-right:3px">
+                  <li class="menu-item"><a class="navli" href="{% url 'homepage:news_list' %}">The DailyCircles</a></li>
+                  <li class="menu-item"><a class="navli" href="{% url 'homepage:news_list' %}"><span class="fa fa-home" style="margin-right:3px">
                   </span>Home</a></li>
-                  <li class="menu-item"><a href="#">Contact</a></li>
-                  <li class="menu-item"><a href="#"><span class="fa fa-send" style="margin-right:3px"></span>Subscribe</a></li>
-                  <li class="menu-item"><a href="#">Search</a></li>
+                  <li class="menu-item"><a class="navli" href="{% url 'homepage:contactus' %}"><span class="glyphicon glyphicon-earphone"></span>Contact</a></li>
+                  <li class="menu-item"><a class="navli" href="#id_subscribe"><span class="fa fa-send" style="margin-right:3px"></span>Subscribe</a></li>
+                  <li class="menu-item"><a class="navli"  href="{% url 'homepage:search'%}"><span class="glyphicon glyphicon-search"></span>Search</a></li>
+
               </ul>
           </nav>
       </div>
       <div class="col-sm-4 col-md-4">
-          <nav class="navbar navbar-default">
+          <nav class="navbar navbar-default" id="testnav2" style="background:#122647;color:#fff">
               <ul class="nav navbar-nav">
-                  {% if username %}
-                  <li class="menu-item"><a href="#"> Hi..{{ username|upper }}</a></li>
+                  {% if user.username %}
+                  <li class="menu-item"><a class="navli"  href="#"> Hi.. &nbsp{{ user.username }}</a></li>
+                  <li class="menu-item"><a class="navli"  href="{% url 'logout' %}">Logout</a></li>
+                  <li class="menu-item"><a class="navli"  href="{% url 'change_password' %}" >change password</a></li>
                   {% else %}
-                  <li class="menu-item"><a href="{% url 'login' %}">Login</a></li>
-                  <li class="menu-item"><a href="{% url 'signup' %}">SignUp</a></li>
+                  <li class="menu-item"><a class="navli"  href="{% url 'login' %}">Login</a></li>
+                  <li class="menu-item"><a class="navli" href="{% url 'signup' %}">SignUp</a></li>
                   {% endif %}
               </ul>
           </nav>

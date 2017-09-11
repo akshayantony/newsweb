@@ -1,0 +1,59 @@
+{% extends './news_list.html' %}
+{% load staticfiles %}
+<head>
+  <meta charset="UTF-8">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+</head>
+<body>
+{% block newslist %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+          <h1 style="text-align:left">Contact Us</h1>
+        <p>We are here to answer any questions you may have about our dailycircles newssite. Reach out to us and we'll respond as soon as we can.
+
+          Even if there is something you have always wanted to experience and can't find it on dailycircles, let us know and we promise we'll do our best to find it for you and send you there.</p>
+        </div>
+        <div class="col-sm-8 col-md-8">
+          <form class="cf" method="POST">
+            {%csrf_token%}
+            <div class="half left cf">
+                <input type="text" id="input-name" placeholder="Name" name="name">
+                <input type="email" id="input-email" placeholder="Email address" name="email">
+                <input type="text" id="input-subject" placeholder="Subject" name="subject">
+            </div>
+            <div class="half right cf">
+              <textarea type="text" id="input-message" placeholder="Message" name="content"></textarea>
+            </div>
+            <input type="submit" value="Submit" id="input-submit">
+          </form>
+        </div>
+      <div class="col-sm-4 col-md-4">
+
+        <div>
+          EMAIL:
+          info@dailycircles.com
+        </div>
+        <div>
+TELEPHONE:
++44 20 7193 33123
+        </div>
+        <div>
+ADDRESS
+Dailycircles Ltd.
+Kings Avenue
+London
+N21 3NA
+England
+
+Company No. 08715
+        </div>
+
+      </div>
+    </div>
+</div>
+{% endblock newslist %}
+{% block addnews %}
+{% endblock addnews%}
+</body>

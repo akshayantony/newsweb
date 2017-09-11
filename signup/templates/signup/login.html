@@ -1,8 +1,30 @@
+{% include "homepage/header.html" %}
+<div>{% include "homepage/navbar.html" %}</div>
 {% block login %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+<div class="container">
+    <div>
+    	<h3>Login or <a href="{% url 'signup' %}">Sign up</a></h3>
+
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary" type="submit">Login</button>
+    </form>
+<br>
+<p><strong> -- OR -- </strong></p>
+<a href="{% url 'social:begin' 'facebook'%}" class="btn btn-lg  omb_btn-facebook">
+      <i class="fa fa-facebook visible-xs"></i>
+      <span class="hidden-xs">Facebook</span>
+</a>
+<a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-lg omb_btn-google">
+      <i class="fa fa-google-plus visible-xs"></i>
+<span class="hidden-xs">Google+</span>
+</a>
+<div>
+    <a href="{% url 'password_reset' %}">Forgot password?</a>
+</div>
+</div>
+</div>
 {% endblock %}
+{% include "homepage/footer.html" %}

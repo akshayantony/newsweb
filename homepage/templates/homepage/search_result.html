@@ -1,0 +1,24 @@
+{% extends "./news_list.html" %}
+
+
+            {% block newslist %}
+                <div class="col-sm-8 col-md-8 newscater">
+                      <ul>
+                             <div class="news">
+                                 {% for latest in queryset %}
+                                     <div class="news-header">
+                                         <h2><li><a href="{% url 'homepage:newsdetail' latest.id %}">{{latest.title}}</a></li></h2>
+                                     </div>
+
+                                     <div class="news_body">
+                                         <li>{{latest.content|safe|truncatewords:"20"}}</li>
+                                         <a href="{% url 'homepage:newsdetail' latest.id %}">read more</a>
+                                         <br>
+                                     </div>
+                                 {% empty %}
+                                     <div> Sorry, No News Available</div>
+                                  {% endfor %}
+                              </div>
+                        </ul>
+                  </div>
+            {% endblock newslist %}

@@ -1,0 +1,26 @@
+{% load comments %}
+
+     {% if user.is_authenticated %}
+                    {% get_comment_form for homepage.news news.id as form %}
+                    <form action="/comments/post/" method="post" id="post_comments">
+                        {% csrf_token %}
+                        <input  class="form-control" type="hidden" name="name"  id="id_name" maxlength="50" /><br >
+                        <input  class="form-control" type="hidden" name="email"  id="id_email" /> <br >
+                        <input  class="form-control" type="hidden" name="url" id="id_url" /> <br>
+                        <textarea class="form-control" name="comment" required id="id_comment" cols="60" rows="5" maxlength="3000"></textarea><br>
+                        <form action="{% comment_form_target %}" method="POST">
+                            <input type="hidden" name="honeypot" id="id_honeypot" />
+                            {{ form.content_type }}
+                            {{ form.object_pk }}
+                            {{ form.timestamp }}
+                            {{ form.security_hash }}
+                            <input type="submit" onclick="return false;" value="Add comment" id="id_submit" />
+                        </form>
+                    </form>
+                <div id="refresh_this_div">
+                    {% render_comment_list for homepage.news news.id %}
+                </div>
+        {% else %}
+            <p>Please <a href="{% url 'login' %}">log in</a> to leave a comment.</p>
+        {% endif %}
+

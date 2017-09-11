@@ -21,4 +21,7 @@
             {% else %}
                 <p>Sorry, No News Available!</p>
             {% endif %}
+
         {% endblock newslist %}
+
+        {% block paginate %}{% include "./paginate.html" %}{% endblock paginate %}
