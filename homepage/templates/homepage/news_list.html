@@ -58,13 +58,13 @@ $(document).ready(function(){
                       <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>Tech</a>
                   </div>
 -->
-                 {% if categ_news %}
+                {% if categ_news %}
                       <div class="col-sm-4 col-md-4 list-group newscater">
                           {% for categories in categ_news %}
                               <a href="{% url 'homepage:categorylist' categories.cname %}" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>{{categories.cname}}</a>
                           {% endfor %}
                       </div>
-                {% endif %}
+                 {% endif %}
                 {% block addnews %}
                 {% if user.is_authenticated %}
                     <div class="col-sm-4 col-md-4">
