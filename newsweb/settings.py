@@ -158,3 +158,18 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1051118390483-pnfpc9soqke3rkes668j1r5rdi35b676.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qUeX9bSL-PxExct_CAuw4NYU'
 
 SITE_ID=1
+
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
+DEBUG = False
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

@@ -2,43 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60e1f3f1-1839-477f-852f-bb9c45d02a65" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/homepage/forms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/homepage/templates/homepage/addnews.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/homepage/templates/homepage/comments.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/homepage/templates/homepage/paginate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/homepage/templates/homepage/search.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/homepage/templates/homepage/search_result.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/homepage/templates/homepage/subscribe.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup/templates/signup/home.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup/templates/signup/password_reset_complete.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup/templates/signup/password_reset_confirm.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup/templates/signup/password_reset_done.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup/templates/signup/password_reset_email.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup/templates/signup/password_reset_form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/signup/templates/signup/password_reset_subject.txt" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mediafiles/modelimages/NADAL.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mediafiles/modelimages/NADAL_BAOa5I2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/modelimages/NADAL.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/modelimages/NADAL_atXvLKy.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/newsweb.iml" afterPath="$PROJECT_DIR$/.idea/newsweb.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/admin.py" afterPath="$PROJECT_DIR$/homepage/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/models.py" afterPath="$PROJECT_DIR$/homepage/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/static/css/homepage.css" afterPath="$PROJECT_DIR$/homepage/static/css/homepage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/templates/homepage/detail_news.html" afterPath="$PROJECT_DIR$/homepage/templates/homepage/detail_news.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/templates/homepage/header.html" afterPath="$PROJECT_DIR$/homepage/templates/homepage/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/templates/homepage/navbar.html" afterPath="$PROJECT_DIR$/homepage/templates/homepage/navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/templates/homepage/news_list.html" afterPath="$PROJECT_DIR$/homepage/templates/homepage/news_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/templates/homepage/newscategory_list.html" afterPath="$PROJECT_DIR$/homepage/templates/homepage/newscategory_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/urls.py" afterPath="$PROJECT_DIR$/homepage/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homepage/views.py" afterPath="$PROJECT_DIR$/homepage/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newsweb/settings.py" afterPath="$PROJECT_DIR$/newsweb/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newsweb/urls.py" afterPath="$PROJECT_DIR$/newsweb/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signup/forms.py" afterPath="$PROJECT_DIR$/signup/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signup/templates/signup/login.html" afterPath="$PROJECT_DIR$/signup/templates/signup/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signup/templates/signup/signup.html" afterPath="$PROJECT_DIR$/signup/templates/signup/signup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/signup/views.py" afterPath="$PROJECT_DIR$/signup/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newsweb/wsgi.py" afterPath="$PROJECT_DIR$/newsweb/wsgi.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -87,11 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newsweb/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+            <state relative-caret-position="459">
+              <caret line="174" column="8" lean-forward="false" selection-start-line="174" selection-start-column="8" selection-end-line="174" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/newsweb/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -134,16 +109,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
               <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newsweb/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -196,7 +161,6 @@
         <option value="$PROJECT_DIR$/homepage/templates/homepage/search.html" />
         <option value="$PROJECT_DIR$/homepage/templates/homepage/subscribe.html" />
         <option value="$PROJECT_DIR$/homepage/templates/homepage/news_list.html" />
-        <option value="$PROJECT_DIR$/newsweb/settings.py" />
         <option value="$PROJECT_DIR$/homepage/templates/homepage/navbar.html" />
         <option value="$PROJECT_DIR$/homepage/static/css/homepage.css" />
         <option value="$PROJECT_DIR$/homepage/admin.py" />
@@ -205,6 +169,8 @@
         <option value="$PROJECT_DIR$/homepage/models.py" />
         <option value="$PROJECT_DIR$/homepage/views.py" />
         <option value="$PROJECT_DIR$/homepage/templates/homepage/contactus.html" />
+        <option value="$PROJECT_DIR$/newsweb/settings.py" />
+        <option value="$PROJECT_DIR$/newsweb/wsgi.py" />
       </list>
     </option>
   </component>
@@ -254,29 +220,6 @@
               <item name="newsweb" type="b2602c69:ProjectViewProjectNode" />
               <item name="newsweb" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="newsweb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newsweb" type="462c0819:PsiDirectoryNode" />
-              <item name="homepage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newsweb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newsweb" type="462c0819:PsiDirectoryNode" />
-              <item name="homepage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newsweb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newsweb" type="462c0819:PsiDirectoryNode" />
-              <item name="homepage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="homepage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="newsweb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="newsweb" type="462c0819:PsiDirectoryNode" />
-              <item name="newsweb" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -323,7 +266,7 @@
   <component name="ToolWindowManager">
     <frame x="34" y="0" width="1325" height="780" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23507181" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23507181" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -364,11 +307,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modelimages/modelimages/iphone-8-to-replace-home-button-with-gesture-control-740x400-1-1504159933.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modelimages/modelimages/iphone-8-to-replace-home-button-with-gesture-control-1400x653-1504160040_1100x513.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -519,8 +457,8 @@
     <entry file="file://$PROJECT_DIR$/../cen/sayonenews-dev/feedback/apps.py" />
     <entry file="file://$PROJECT_DIR$/newsweb/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="174" column="8" lean-forward="false" selection-start-line="174" selection-start-column="8" selection-end-line="174" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -619,6 +557,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="55" column="23" lean-forward="true" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newsweb/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
