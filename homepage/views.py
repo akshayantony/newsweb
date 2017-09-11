@@ -96,10 +96,10 @@ def addimages(request,pk):
 
 def subscribeEmailview(request):
     if request.method == 'POST':
-        print("111111111111111111")
-        print(request.POST.get('Email'))
+        # print("111111111111111111")
+        # print(request.POST.get('Email'))
         form=SubscribeForm(request.POST)
-        print(form)
+        # print(form)
         if form.is_valid():
             sub=form.save(commit=False)
             sub.token=get_random_string(length=32)
