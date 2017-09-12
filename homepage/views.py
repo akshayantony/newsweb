@@ -96,14 +96,14 @@ def addimages(request,pk):
 
 def subscribeEmailview(request):
     if request.method == 'POST':
-        # print("111111111111111111")
-        # print(request.POST.get('Email'))
+        print("inside subscribe post")
         form=SubscribeForm(request.POST)
-        # print(form)
         if form.is_valid():
+            print("is valid????")
             sub=form.save(commit=False)
             sub.token=get_random_string(length=32)
             sub.save()
+            print(sub)
             send_mail(
                 'Subscribe to Newsletter',
                 """ Hey ( %s ), this email  have been requested to subscribe DailyNews, 
