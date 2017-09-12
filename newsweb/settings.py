@@ -32,18 +32,25 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
     'homepage',
     'signup',
     'django_social_share',
-    'django.contrib.sites',
     'django_comments',
     'whitenoise.runserver_nostatic',
+
+    'django.contrib.auth',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -62,6 +69,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'newsweb.urls'
 
+
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -73,9 +83,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
 
-                'social_django.context_processors.backends',  # this
-                'social_django.context_processors.login_redirect',  # and this
             ],
         },
     },
@@ -87,14 +96,21 @@ WSGI_APPLICATION = 'newsweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+# 'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dk72ip1dncpo4',
+#         'USER': 'hyjihfkyfwbrox',
+#         'PASSWORD':'ebd266bf7f7fc78dcde90760cd1712bbc1d421e52278636fcec6bd11605fea36',
+#         'HOST': 'ec2-54-163-249-237.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dk72ip1dncpo4',
-        'USER': 'hyjihfkyfwbrox',
-        'PASSWORD':'ebd266bf7f7fc78dcde90760cd1712bbc1d421e52278636fcec6bd11605fea36',
-        'HOST': 'ec2-54-163-249-237.compute-1.amazonaws.com',
-        'PORT': '5432',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -143,7 +159,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'modelimages')
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'homepage:news_list'
+LOGIN_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -153,18 +169,58 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'The Daily Circles News <noreply@example.com>'
 
 
-AUTHENTICATION_BACKENDS=(
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.google.GoogleOAuth2',
+AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+
 SOCIAL_AUTH_FACEBOOK_KEY = '1768613143436454'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'bda5308acc8ca50f9b4ef4864f3ba1d9'  # App Secret
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1051118390483-pnfpc9soqke3rkes668j1r5rdi35b676.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qUeX9bSL-PxExct_CAuw4NYU'
 
-SITE_ID=2
+SITE_ID=1
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4',
+    }
+
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 

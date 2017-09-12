@@ -33,7 +33,9 @@ urlpatterns = [
 
     url(r'^password/$',core_views.change_password,name='change_password'),
 
-    url(r'^oauth/', include('social_django.urls',namespace='social')),
+    # url(r'^oauth/', include('social_django.urls',namespace='social')),
 
     url(r'^comments/', include('django_comments.urls')),
+
+    url(r'^accounts/', include('allauth.urls')),
 ]
