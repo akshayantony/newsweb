@@ -145,12 +145,13 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'homepage:news_list'
 
-EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'akshayantony55'
+EMAIL_HOST_USER = 'dailycirclenews@gmail.com'
 EMAIL_HOST_PASSWORD ='akshay123@'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'The Daily Circles News <noreply@example.com>'
+
 
 AUTHENTICATION_BACKENDS=(
     'social_core.backends.facebook.FacebookOAuth2',

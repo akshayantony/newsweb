@@ -93,18 +93,16 @@ def addimages(request,pk):
 
     return render(request,'homepage/addimages.html',{'form':form})#,'sub_form':sub_form})
 
-
 def subscribeEmailview(request):
     if request.method == 'POST':
-        print("inside subscribe post")
+        print("111111111111111111")
+        print(request.POST.get('Email'))
         form=SubscribeForm(request.POST)
         print(form)
         if form.is_valid():
-            print("is valid????")
             sub=form.save(commit=False)
             sub.token=get_random_string(length=32)
             sub.save()
-            print(sub)
             send_mail(
                 'Subscribe to Newsletter',
                 """ Hey ( %s ), this email  have been requested to subscribe DailyNews, 
@@ -118,7 +116,7 @@ def subscribeEmailview(request):
                 """ % (sub.Email, sub.token),
                 'dailycirclenews@gmail.com',
                 [sub.Email],
-                fail_silently=True,
+
             )
             msg="Subscription succesful"
         else:
@@ -143,6 +141,7 @@ def SubscribeActivate(request,token):
         return render(request,'homepage/subscribesuccess.html',{'msg':'Subscription activated'})
     else:
         return render(request, 'homepage/subscribesuccess.html', {'msg': 'Subscription not succesful'})
+
 
 def Contactus(request):
     if request.method == 'POST':

@@ -68,6 +68,7 @@ def subscription_handler(instance,**kwargs):
 
 post_save.connect(subscription_handler, sender=News, dispatch_uid="subscription_handler")
 
+
 @python_2_unicode_compatible
 class Contactus(models.Model):
     name=models.CharField(max_length=100,blank=True)
