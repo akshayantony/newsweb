@@ -98,6 +98,7 @@ def subscribeEmailview(request):
     if request.method == 'POST':
         print("inside subscribe post")
         form=SubscribeForm(request.POST)
+        print(form)
         if form.is_valid():
             print("is valid????")
             sub=form.save(commit=False)
