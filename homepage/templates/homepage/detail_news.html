@@ -15,11 +15,11 @@
     <div class="row">
         <hr>
         <div class="col-sm-2 col-md-2 sharediv" >
-            Share your news:
-
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//dailynewssayone.herokuapp.com{{get_absolute_url}}">Share on Facebook</a>
-            {% post_to_facebook  news.news_id  %}
-            {% post_to_gplus  news.news_id  %}
+            Share your news on social:
+            {% post_to_facebook  news.news_id  %}<br>
+            {% post_to_gplus  news.news_id  %}<br>
+            {% post_to_twitter news.news_id %}<br>
+            {% post_to_linkedin news.news_id %}<br>
         </div>
 
 
