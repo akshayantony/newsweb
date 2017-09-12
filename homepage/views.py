@@ -93,6 +93,7 @@ def addimages(request,pk):
 
     return render(request,'homepage/addimages.html',{'form':form})#,'sub_form':sub_form})
 
+
 def subscribeEmailview(request):
     if request.method == 'POST':
         print("111111111111111111")
