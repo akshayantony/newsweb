@@ -108,8 +108,8 @@ def subscribeEmailview(request):
                 'Subscribe to Newsletter',
                 """ Hey ( %s ), this email  have been requested to subscribe DailyNews, 
                 Please activate through the below link :  \
-
-                    http://127.0.0.1:8000/activate/%s/    \
+                
+                    https://dailynewssayone.herokuapp.com/activate/%s/    \
                 \
                     If it was not you please ignore      \
 
