@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60e1f3f1-1839-477f-852f-bb9c45d02a65" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newsweb/settings.py" afterPath="$PROJECT_DIR$/newsweb/settings.py" />
-    </list>
+    <list default="true" id="60e1f3f1-1839-477f-852f-bb9c45d02a65" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +14,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newsweb/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1635">
-              <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+            <state relative-caret-position="3567">
+              <caret line="211" column="0" lean-forward="true" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -685,8 +683,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/newsweb/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1635">
-          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+        <state relative-caret-position="3567">
+          <caret line="211" column="0" lean-forward="true" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
           <folding />
         </state>
       </provider>
