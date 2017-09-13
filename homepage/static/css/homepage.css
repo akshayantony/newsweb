@@ -1,3 +1,4 @@
+
 h1,h1 a {
     color: #FCA205;
 }
@@ -322,4 +323,11 @@ form textarea {
 .cf:after {
   clear: both;
 }
-
+.subscribemsg{
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    background: white;
+    display: block;
+    width: 56%;
+}

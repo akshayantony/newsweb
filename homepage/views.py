@@ -96,10 +96,10 @@ def addimages(request,pk):
 
 def subscribeEmailview(request):
     if request.method == 'POST':
-        print("111111111111111111")
-        print(request.POST.get('Email'))
+        # print("111111111111111111")
+        # print(request.POST.get('Email'))
         form=SubscribeForm(request.POST)
-        print(form)
+        # print(form)
         if form.is_valid():
             sub=form.save(commit=False)
             sub.token=get_random_string(length=32)
@@ -119,7 +119,7 @@ def subscribeEmailview(request):
                 [sub.Email],
 
             )
-            msg="Subscription succesful"
+            msg="Dear user , Request for subscription is succesful.Inorder to receive newsletter, Kindly activate it from your mail "
         else:
             msg="invalid form"
         return render(request,'homepage/subscribesuccess.html',
@@ -133,7 +133,9 @@ def subscribeEmailview(request):
 
 def SubscribeActivate(request,token):
     try:
+        print("token>>>>",token)
         subobj=Subscribe.objects.get(token=token)
+        print("subobj>>>",subobj)
     except(Subscribe.DoesNotExist):
         subobj=None
     if subobj is not None:

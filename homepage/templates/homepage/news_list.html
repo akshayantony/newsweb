@@ -20,33 +20,41 @@ $(document).ready(function(){
 </head>
 <body>
 
-<div class="container" class>
+<div class="container">
 {% block navbar %} {% include "./navbar.html" %} {% endblock navbar %}
 
         <div class="row">
-
+            {%block search%}{%endblock search%}
             {% block newslist %}
 
               {% if latest_news_list %}
-                  <div class="col-sm-8 col-md-8 newscater">
+                  <div class="col-sm-8 col-md-8 newscater ">
                       <ul>
                              <div class="news">
                                  {% for latest in latest_news_list %}
-                                     <div class="news-header">
+
+                                 <div class="panel-default">
+
+                                     <div class="news-header panel-heading ">
                                          <h2><li><a href="{% url 'homepage:newsdetail' latest.id %}">{{latest.title}}</a></li></h2>
                                      </div>
 
-                                     <div class="news_body">
+                                     <div class="news_body panel-body">
                                          <li>{{latest.content|safe|truncatewords:"20"}}</li>
                                          <a href="{% url 'homepage:newsdetail' latest.id %}">read more</a>
                                          <br>
+                                     </div>
+
+                                     </div>
+                                 <br><br>
                                   {% endfor %}
                                     </div>
-                             </div>
                         </ul>
                   </div>
                {% else %}
-                   <p>Sorry, No News Available!</p>
+                    <div class="well well-sm">
+                         <p>Sorry, No News Available!</p>
+                    </div>
                {% endif %}
             {% endblock newslist %}
 
@@ -67,12 +75,12 @@ $(document).ready(function(){
                  {% endif %}
                 {% block addnews %}
                 {% if user.is_authenticated %}
-                    <div class="col-sm-4 col-md-4">
-                        <a href="{% url 'homepage:addnews' %}">Add your own news? Click here!</a>
+                    <div class="col-sm-4 col-md-4 btn btn-link well well-sm" style="float:right">
+                       <span class="glyphicon glyphicon-plus-sign">Add your own news? </span> <a href="{% url 'homepage:addnews' %}">Click here!</a>
                     </div>
                   {% endif %}
-
-                    <div class="col-sm-4 col-md-4" id="id_subscribe">
+                    <br><br><br><br>
+                    <div class="col-sm-4 col-md-4 well well-sm" id="id_subscribe" style="float:right">
                         {% include './subscribe.html'%}
                     </div>
 

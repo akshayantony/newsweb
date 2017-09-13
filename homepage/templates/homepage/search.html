@@ -1,12 +1,14 @@
 {% extends "./news_list.html" %}
-{% block newslist %}
+{% block search %}
 <div class="page card">
     <h4 class="page-title">Search</h4>
     <hr class="sm">
     <form action="#" method="post" id="searchform">
                 {% csrf_token %}
-                {{ form }}
-                    <input type="submit" value="OK">
+                <input type="text" name="search_field" class=" text-center" placeholder="search-key">
+                <button class="btn btn-primary" type="submit"> Search <i class="glyphicon glyphicon-ok"> </i> </button>
     </form>
 </div>
-{% endblock newslist %}
+{% endblock search %}
+{%block newslist%}
+{%endblock newslist%}
