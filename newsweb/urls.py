@@ -17,6 +17,12 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from signup import views as core_views
+from newsweb.sitemaps import TodoSitemap
+from django.contrib.sitemaps.views import sitemap
+sitemaps={
+    'todos':TodoSitemap()
+}
+
 urlpatterns = [
     url(r'^',include('homepage.urls'),name='homepage'),
     url(r'^admin/', admin.site.urls),
@@ -38,4 +44,7 @@ urlpatterns = [
     url(r'^comments/', include('django_comments.urls')),
 
     url(r'^accounts/', include('allauth.urls')),
+
+    url(r'^sitemap.xml$',sitemap, {'sitemaps': sitemaps}),
+    url(r'^robots.txt', include('robots.urls')),
 ]
