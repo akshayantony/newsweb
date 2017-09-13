@@ -45,6 +45,6 @@ urlpatterns = [
 
     url(r'^accounts/', include('allauth.urls')),
 
-    url(r'^sitemap.xml$',sitemap, {'sitemaps': sitemaps}),
+    url(r'^sitemaps.xml',sitemap, {'sitemaps': sitemaps}),
     url(r'^robots.txt', include('robots.urls')),
 ]
