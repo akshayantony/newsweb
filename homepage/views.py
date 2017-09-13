@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponseRedirect
-from django.views import generic
+from django.views import generic, View
 from django.core.urlresolvers import reverse
 from homepage.models import News,NewsCategories,Newsrelimage,Subscribe,Contactus
 from homepage.forms import SearchForm,NewsForm ,NewsImageForm,SubscribeForm,ContactForm #,CategoriesForm
@@ -9,6 +9,7 @@ from homepage.models import Subscribe
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
 from django.views.generic.edit import FormView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class NewsView(generic.ListView):
@@ -45,22 +46,94 @@ class CategoryView(generic.ListView):
         return News.objects.filter(category__cname=self.kwargs['categ'])
 
 
-def search(request):
-    if(request.method == 'POST'):
-        form=SearchForm(request.POST)
+class SearchView(View):
 
+    def get(self,request,*args,**kwargs):
+        search = request.GET.get('search_field')
+        if search:
+            queryset = News.objects.filter(title__icontains=search)
+            print("----------------- ", queryset.count())
+            page = request.GET.get('page', 1)
+            print("-------------pageeeeee ", page)
+            paginator = Paginator(queryset, 3)
+            try:
+                news = paginator.page(page)
+            except PageNotAnInteger:
+                news = paginator.page(1)
+            except EmptyPage:
+                news = paginator.page(paginator.num_pages)
+            return render(request, 'homepage/search_result.html', {'queryset': news,
+                                                                   'key': search})
+        else:
+            form = SearchForm()
+            return render(request, 'homepage/search.html', {'form': form})
+
+    def post(self,request,*args,**kwargs):
+        form = SearchForm(request.POST)
         if form.is_valid():
-            search=form.cleaned_data.get('search_field')
-            queryset=News.objects.filter(title__icontains=search)
-            return render(request,'homepage/search_result.html',{'queryset':queryset})
+            search = form.cleaned_data.get('search_field')
+            queryset = News.objects.filter(title__icontains=search)
+            print("----------------- ",queryset.count())
+            page = request.GET.get('page', 1)
+            print("-------------pageeeeee ",page)
+            paginator = Paginator(queryset, 3)
+            try:
+                news = paginator.page(page)
+            except PageNotAnInteger:
+                news = paginator.page(1)
+            except EmptyPage:
+                news = paginator.page(paginator.num_pages)
+            return render(request, 'homepage/search_result.html', {'queryset': news})
+        else:
+            return render(request, 'homepage/search.html', {'form': form})
 
-    else:
-        form=SearchForm()
-
-    return render(request,'homepage/search.html',{'form':form})
 
 
+# def search(request):
+#     if(request.method == 'POST'):
+#         form=SearchForm(request.POST)
+#
+#         if form.is_valid():
+#             search=form.cleaned_data.get('search_field')
+#             queryset=News.objects.filter(title__icontains=search)
+#             page = request.GET.get('page', 1)
+#             paginator = Paginator(queryset, 3)
+#             try:
+#                 news = paginator.page(page)
+#             except PageNotAnInteger:
+#                 news= paginator.page(1)
+#             except EmptyPage:
+#                 news = paginator.page(paginator.num_pages)
+#             return render(request,'homepage/search_result.html',{'queryset':news})
+#
+#     else:
+#         form=SearchForm()
+#
+#     return render(request,'homepage/search.html',{'form':form})
 
+
+# class SearchView(generic.ListView):
+#     model = News
+#     template_name = 'homepage/search_result.html'
+#     context_object_name = 'queryset'
+#     paginate_by = 3
+#
+#     def get_queryset(self, *args, **kwargs):
+#         print("4444444444444444444444444444444444")
+#         search=self.request.GET['search_field']
+#         print("4444444444444444444444444444444444",search)
+#         return News.objects.filter(title__icontains=self.request.GET['search_field'])
+#
+#     def post(self,request,*args,**kwargs):
+#         form = SearchForm(request.POST)
+#         if form.is_valid():
+#             searchkey = form.cleaned_data['search_field']
+#             ans=News.objects.filter(title__icontains=searchkey)
+#             return render(request,'homepage/search_result.html',{'queryset':ans})
+#         else:
+#             pass
+#
+#
 
 def addNews(request):
     if (request.method == 'POST'):
@@ -124,7 +197,7 @@ def subscribeEmailview(request):
             )
             msg="Dear user , Request for subscription is succesful.Inorder to receive newsletter, Kindly activate it from your mail "
         else:
-            msg="invalid form"
+            msg="User already subscribed"
         return render(request,'homepage/subscribesuccess.html',
                                      {"msg":msg})
 

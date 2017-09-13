@@ -4,7 +4,10 @@ from django.forms import Textarea
 # from multiupload.fields import MultiImageField
 
 class SearchForm(forms.Form):
-    search_field=forms.CharField(label='',max_length=150)
+    search_field=forms.CharField(label='Search keyword',max_length=150, required=True)
+
+    class Meta:
+        fields=['search_field',]
 
 class NewsForm(forms.ModelForm):
 

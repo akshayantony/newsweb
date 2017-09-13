@@ -3,9 +3,10 @@
 <div class="page card">
     <h4 class="page-title">Search</h4>
     <hr class="sm">
-    <form action="#" method="post" id="searchform">
+    <form action="{% url 'homepage:search' %}" method="get" id="searchform">
                 {% csrf_token %}
-                <input type="text" name="search_field" class=" text-center" placeholder="search-key">
+        {{ form }}
+
                 <button class="btn btn-primary" type="submit"> Search <i class="glyphicon glyphicon-ok"> </i> </button>
     </form>
 </div>

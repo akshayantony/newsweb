@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 
 app_name='homepage'
 urlpatterns=[
-    url(r'^dailycircle/search/$', views.search, name='search'),
+    url(r'^dailycircle/search/$', views.SearchView.as_view(), name='search'),
     url(r'^dailycircle/addnews/$', views.addNews, name='addnews'),
     url(r'^dailycircle/addimages/(?P<pk>[0-9]+)$', views.addimages, name='addnewsimages'),
     url(r'^dailycircle/subscribe/$', views.subscribeEmailview, name='subscribe'),

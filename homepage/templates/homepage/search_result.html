@@ -25,3 +25,30 @@
                         </ul>
                   </div>
             {% endblock newslist %}
+{% block paginate %}
+
+
+{% if queryset.has_other_pages %}
+  <ul class="pagination">
+    {% if queryset.has_previous %}
+      <li><a href="?page={{ queryset.previous_page_number }}&search_field={{key}}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in queryset.paginator.page_range %}
+      {% if queryset.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}&search_field={{key}}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if queryset.has_next %}
+      <li><a href="?page={{ queryset.next_page_number }}&search_field={{key}}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+{% endblock paginate %}
