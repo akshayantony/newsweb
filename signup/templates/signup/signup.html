@@ -1,13 +1,13 @@
-{% include "homepage/header.html" %}
-<div>{% include "homepage/navbar.html" %}</div>
+{% extends "homepage/news_list.html" %}
+
 <div id="signupblock">
-    {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
-{% endblock %}
+    {% block newslist %}
+      <h2>Sign up</h2>
+      <form method="post" class="pull-left text-left thumbnail">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Sign up</button>
+      </form>
+    {% endblock newslist %}
 </div>
 {% include "homepage/footer.html" %}

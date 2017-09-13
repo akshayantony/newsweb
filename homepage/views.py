@@ -59,6 +59,9 @@ def search(request):
 
     return render(request,'homepage/search.html',{'form':form})
 
+
+
+
 def addNews(request):
     if (request.method == 'POST'):
         form=NewsForm(request.POST)

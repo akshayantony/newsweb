@@ -15,11 +15,12 @@
     <div class="row">
         <hr>
         <div class="col-sm-2 col-md-2 sharediv" >
-            Share your news on social:
-            {% post_to_facebook  news.news_id  %}<br>
-            {% post_to_gplus  news.news_id  %}<br>
-            {% post_to_twitter news.news_id %}<br>
-            {% post_to_linkedin news.news_id %}<br>
+            <span style="color:black;font-weight:bold">Share this news :</span>
+            <br><br>
+            {% post_to_facebook  news.news_id  %}<i class="fa fa-facebook-official"></i><br>
+            {% post_to_gplus  news.news_id  %}<br><i class="fa fa-google-plus"></i><br>
+            {% post_to_twitter news.news_id %}<br><i class="fa fa-twitter"></i><br>
+            {% post_to_linkedin news.news_id %}<br><i class="fa fa-linkedin-square"></i><br>
         </div>
 
 
@@ -27,30 +28,32 @@
             <div>
                 <h1> {{ news.title }} </h1>
             </div>
-            <div style="color:red">
+            <div style="color:#6d92ce">
                By: {{news.author}} | Created:{{ news.created_date }}
             </div>
             <br>
+            <blockquote>
             <div>
                 {{ news.content }}
             </div>
-
+            </blockquote>
+            <br><br>
             <div>
                 {% for related_new in related_news %}
-                    <img src=" {{related_new.img.url }}" alt="Profile Picture" width="200"/>
+                    <img class="img-responsive img-thumbnail" width="300" height="250" src=" {{related_new.img.url }}" alt="Picture" width="200"/>
                 {%endfor%}
             </div>
         </div>
-        <div class="col-sm-4 col-md-4" >
+        <div class="col-sm-4 col-md-4" style="margin-top: 111px;">
              <div class="col-sm-4 col-md-4" >
                 {% if user.is_authenticated %}
                     {% if news.author == user.username %}
-                        <a href="{% url 'homepage:addnewsimages' news.id%}">Add images to your news?</a>
+                        <a class="thumbnail" href="{% url 'homepage:addnewsimages' news.id%}">Add images to your news?</a>
                     {% endif %}
                 {% endif %}
             </div>
-            {% block comments %} {% include "./comments.html"  %} {% endblock comments %}
 
+            {% block comments %} {% include "./comments.html"  %} {% endblock comments %}
         </div>
 
 <script>

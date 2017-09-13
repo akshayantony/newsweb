@@ -1,6 +1,12 @@
- <form method="POST" enctype="multipart/form-data" >
+{% extends "./news_list.html" %}
+
+{% block newslist %}
+<div class="col-sm-6 class=col-md-6 thumbnail" >
+ <form method="POST" enctype="multipart/form-data" style="text-align:left">
      {% csrf_token %}
      <h2>News:</h2>
      {{ form.as_p }}
      <p><input type="submit" value=Add></p>
  </form>
+</div>
+{% endblock newslist %}
