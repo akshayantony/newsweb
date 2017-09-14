@@ -58,14 +58,6 @@ $(document).ready(function(){
                {% endif %}
             {% endblock newslist %}
 
-<!--
-                  <div class="col-sm-4 col-md-4 col-lg-4 list-group newscater">
-                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span> Business </a>
-                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>Entertainment</a>
-                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>Sports</a>
-                      <a href="#" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>Tech</a>
-                  </div>
--->
                 {% if categ_news %}
                       <div class="col-sm-4 col-md-4 list-group newscater">
                           {% for categories in categ_news %}

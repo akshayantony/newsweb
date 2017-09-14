@@ -78,12 +78,3 @@ class Contactus(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
-
-# class Image(models.Model):
-#     image = models.FileField(upload_to="modelimages/",blank=True,null=True)
-#     profile = models.ForeignKey(News,on_delete=models.CASCADE, related_name='images')
-#     is_first = models.BooleanField(default=False)
-#     is_second = models.BooleanField(default=False)

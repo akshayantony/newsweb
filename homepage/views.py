@@ -1,14 +1,11 @@
 from __future__ import unicode_literals
-from django.shortcuts import render,redirect,get_object_or_404
-from django.http import HttpResponseRedirect
+from django.shortcuts import render,redirect
 from django.views import generic, View
-from django.core.urlresolvers import reverse
-from homepage.models import News,NewsCategories,Newsrelimage,Subscribe,Contactus
-from homepage.forms import SearchForm,NewsForm ,NewsImageForm,SubscribeForm,ContactForm #,CategoriesForm
+from homepage.models import News,NewsCategories,Newsrelimage
+from homepage.forms import SearchForm,NewsForm ,NewsImageForm,SubscribeForm,ContactForm
 from homepage.models import Subscribe
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
-from django.views.generic.edit import FormView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -33,7 +30,6 @@ class DetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         context['related_news'] = Newsrelimage.objects.filter(rel_news=self.object)
-        # print("-context is**********", context['related_news'])
         return context
 
 
@@ -87,71 +83,20 @@ class SearchView(View):
         else:
             return render(request, 'homepage/search.html', {'form': form})
 
-
-
-# def search(request):
-#     if(request.method == 'POST'):
-#         form=SearchForm(request.POST)
-#
-#         if form.is_valid():
-#             search=form.cleaned_data.get('search_field')
-#             queryset=News.objects.filter(title__icontains=search)
-#             page = request.GET.get('page', 1)
-#             paginator = Paginator(queryset, 3)
-#             try:
-#                 news = paginator.page(page)
-#             except PageNotAnInteger:
-#                 news= paginator.page(1)
-#             except EmptyPage:
-#                 news = paginator.page(paginator.num_pages)
-#             return render(request,'homepage/search_result.html',{'queryset':news})
-#
-#     else:
-#         form=SearchForm()
-#
-#     return render(request,'homepage/search.html',{'form':form})
-
-
-# class SearchView(generic.ListView):
-#     model = News
-#     template_name = 'homepage/search_result.html'
-#     context_object_name = 'queryset'
-#     paginate_by = 3
-#
-#     def get_queryset(self, *args, **kwargs):
-#         print("4444444444444444444444444444444444")
-#         search=self.request.GET['search_field']
-#         print("4444444444444444444444444444444444",search)
-#         return News.objects.filter(title__icontains=self.request.GET['search_field'])
-#
-#     def post(self,request,*args,**kwargs):
-#         form = SearchForm(request.POST)
-#         if form.is_valid():
-#             searchkey = form.cleaned_data['search_field']
-#             ans=News.objects.filter(title__icontains=searchkey)
-#             return render(request,'homepage/search_result.html',{'queryset':ans})
-#         else:
-#             pass
-#
-#
-
 def addNews(request):
     if (request.method == 'POST'):
         form=NewsForm(request.POST)
-        #sub_form=NewsImageForm(request.POST,prefix="category")
 
         if form.is_valid():
             news=form.save(commit=False)
             news.author = request.user
-            #sub_form.save()
             news.save()
             return redirect('homepage:news_list')
 
     else:
         form = NewsForm()
-        #sub_form = NewsImageForm(prefix="category")
 
-    return render(request,'homepage/addnews.html',{'form':form})#,'sub_form':sub_form})
+    return render(request,'homepage/addnews.html',{'form':form})
 
 def addimages(request,pk):
     if request.method == 'POST':
@@ -165,17 +110,13 @@ def addimages(request,pk):
 
     else:
         form = NewsImageForm()
-        #sub_form = NewsImageForm(prefix="category")
 
-    return render(request,'homepage/addimages.html',{'form':form})#,'sub_form':sub_form})
+    return render(request,'homepage/addimages.html',{'form':form})
 
 
 def subscribeEmailview(request):
     if request.method == 'POST':
-        # print("111111111111111111")
-        # print(request.POST.get('Email'))
         form=SubscribeForm(request.POST)
-        # print(form)
         if form.is_valid():
             sub=form.save(commit=False)
             sub.token=get_random_string(length=32)
@@ -209,9 +150,7 @@ def subscribeEmailview(request):
 
 def SubscribeActivate(request,token):
     try:
-        print("token>>>>",token)
         subobj=Subscribe.objects.get(token=token)
-        print("subobj>>>",subobj)
     except(Subscribe.DoesNotExist):
         subobj=None
     if subobj is not None:
@@ -233,37 +172,3 @@ def Contactus(request):
     else:
         form = ContactForm()
     return render(request, 'homepage/contactus.html', {'form': form})
-
-
-
-    # model_form=ContactForm
-    # model=Contactus
-    # template_name="homepage/contactus.html"
-    # success_url="homepage:news_list"
-    #
-    # def form_invalid(self,form):
-    #     return render(self.request,self.template_name,{'form':self.model_form(form)})
-    #
-    # def post(self,request):
-    #     form=self.model_form(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #     else:
-    #         pass
-    #     return render(request,self.template_name,{'form':self.model_form()})
-    #
-    #     def get(self,request):
-    #         return render(request,self.template_name,{'form':self.model_form()})
-
-
-# class UploadView(FormView):
-#     template_name = 'homepage/addnews.html'
-#     form_class = AddForm
-#     success_url = 'homepage:news_list'
-#
-#     def form_valid(self, form):
-#         instance = form.save(commit=False)
-#         instance.author = self.request.user
-#         instance.save()
-#
-#         return super(UploadView, self).form_valid(form)
