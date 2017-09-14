@@ -59,9 +59,7 @@ $(document).ready(function(){
             {% endblock newslist %}
             {% block categories %}
                 {% if categ_news %}
-                <div class="row">
-                    <div class="col-sm-4 col-md-4">
-                      <div class="col-sm-12 col-md-12 list-group newscater">
+                      <div class="col-sm-4 col-md-4 list-group newscater">
                           {% for categories in categ_news %}
                               <a href="{% url 'homepage:categorylist' categories.cname %}" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>{{categories.cname}}</a>
                           {% endfor %}
@@ -70,17 +68,16 @@ $(document).ready(function(){
             {% endblock categories %}
                 {% block addnews %}
                 {% if user.is_authenticated %}
-                    <div class="col-sm-12 col-md-12 btn btn-link well well-sm" style="float:right">
+                    <div class="col-sm-4 col-md-4 btn btn-link well well-sm" style="float:right">
                        <span class="glyphicon glyphicon-plus-sign">Add your own news? </span> <a href="{% url 'homepage:addnews' %}">Click here!</a>
                     </div>
                   {% endif %}
                     <br><br><br><br><br>
                     {% endblock addnews %}
-                    <div class="col-sm-12 col-md-12 well well-sm pull-right" id="id_subscribe" style="float:right">
+                    <div class="col-sm-4 col-md-4 well well-sm pull-right" id="id_subscribe" style="float:right">
                         {% include './subscribe.html'%}
                     </div>
-                    </div>
-                </div>
+
 
 
               </div>
