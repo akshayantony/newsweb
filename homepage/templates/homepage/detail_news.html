@@ -39,10 +39,13 @@
             </blockquote>
             <br><br>
             <div>
-                {% for related_new in related_news %}
-                    <img class="img-responsive img-thumbnail" width="300" height="250" src=" {{related_new.img.url }}" alt="Picture" width="200"/>
-                {%endfor%}
+                {% if related_news %}
+                    {% for related_new in related_news %}
+                        <img class="img-responsive img-thumbnail" width="300" height="250" src=" {{related_new.img.url }}" alt="Picture" width="200"/>
+                    {%endfor%}
+                {% endif %}
             </div>
+
         </div>
         <div class="col-sm-4 col-md-4" style="margin-top: 111px;">
              <div class="col-sm-4 col-md-4" >
