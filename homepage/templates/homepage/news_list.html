@@ -2,7 +2,7 @@
 <html>
 {% load static %}
 <head>
-{% block head %} {% include "./header.html" %} {% endblock head %}
+    {% block head %} {% include "./header.html" %} {% endblock head %}
     <script>
 $(document).ready(function(){
     $("#searchtest").click(function(){
@@ -10,81 +10,89 @@ $(document).ready(function(){
     });
 });
 </script>
-<style>
+    <style>
     .sharediv{
         color: #0077e2;
         margin-top: 110px;
 }
-
 </style>
 </head>
 <body>
 
 <div class="container">
-{% block navbar %} {% include "./navbar.html" %} {% endblock navbar %}
+    {% block navbar %} {% include "./navbar.html" %} {% endblock navbar %}
 
-        <div class="row">
-            {%block search%}{%endblock search%}
-            {% block newslist %}
+    <div class="row">
+        {%block search%}{%endblock search%}
+        {% block newslist %}
 
-              {% if latest_news_list %}
-                  <div class="col-sm-8 col-md-8 newscater ">
-                      <ul>
-                             <div class="news">
-                                 {% for latest in latest_news_list %}
+        {% if latest_news_list %}
+        <div class="col-sm-8 col-md-8 newscater ">
+            <ul>
+                <div class="news">
+                    {% for latest in latest_news_list %}
 
-                                 <div class="panel-default thumbnail">
+                    <div class="panel-default thumbnail">
 
-                                     <div class="news-header panel-heading ">
-                                         <h2><li><a href="{% url 'homepage:newsdetail' latest.id %}">{{latest.title}}</a></li></h2>
-                                     </div>
+                        <div class="news-header panel-heading ">
+                            <h2><li><a href="{% url 'homepage:newsdetail' latest.id %}">{{latest.title}}</a></li></h2>
+                        </div>
 
-                                     <div class="news_body panel-body">
-                                         <li>{{latest.content|safe|truncatewords:"20"}}</li>
-                                         <a href="{% url 'homepage:newsdetail' latest.id %}">read more</a>
-                                         <br>
-                                     </div>
+                        <div class="news_body panel-body">
+                            <li>{{latest.content|safe|truncatewords:"20"}}</li>
+                            <a href="{% url 'homepage:newsdetail' latest.id %}">read more</a>
+                            <br>
+                        </div>
 
-                                     </div>
-                                 <br><br>
-                                  {% endfor %}
-                                    </div>
-                        </ul>
-                  </div>
-               {% else %}
-                    <div class="well well-sm">
-                         <p>Sorry, No News Available!</p>
                     </div>
-               {% endif %}
-            {% endblock newslist %}
-            {% block categories %}
-                {% if categ_news %}
-                      <div class="col-sm-4 col-md-4 list-group newscater">
-                          {% for categories in categ_news %}
-                              <a href="{% url 'homepage:categorylist' categories.cname %}" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>{{categories.cname}}</a>
-                          {% endfor %}
-                      </div>
-                 {% endif %}
-            {% endblock categories %}
+                    <br><br>
+                    {% endfor %}
+                </div>
+            </ul>
+            <br>
+        </div>
+
+        {% else %}
+        <div class="well well-sm">
+            <p>Sorry, No News Available!</p>
+        </div>
+        {% endif %}
+        {% endblock newslist %}
+        {% block categories %}
+        <div class="col-md-4 col-sm-4">
+        {% if categ_news %}
+
+
+                <div class="list-group newscater">
+                    {% for categories in categ_news %}
+                    <a href="{% url 'homepage:categorylist' categories.cname %}" class="list-group-item"><span class="badge" ><i class="fa fa-chevron-right icon-data"></i></i></span>{{categories.cname}}</a>
+                    {% endfor %}
+                </div>
+
+                {% endif %}
+                {% endblock categories %}
                 {% block addnews %}
                 {% if user.is_authenticated %}
-                    <div class="col-sm-4 col-md-4 btn btn-link well well-sm" style="float:right">
-                       <span class="glyphicon glyphicon-plus-sign">Add your own news? </span> <a href="{% url 'homepage:addnews' %}">Click here!</a>
-                    </div>
-                  {% endif %}
-                    <br><br><br><br><br>
-                    {% endblock addnews %}
-                    <div class="col-sm-4 col-md-4 well well-sm pull-right" id="id_subscribe" style="float:right">
-                        {% include './subscribe.html'%}
-                    </div>
+                <br><br><br>
+                <div class="col-sm-12 col-md-12 btn btn-link well well-sm" style="float:right">
+                    <span class="glyphicon glyphicon-plus-sign">Add your own news? </span> <a href="{% url 'homepage:addnews' %}">Click here!</a>
+                </div>
+                {% endif %}
 
+                <br><br><br><br><br>
+                {% endblock addnews %}
+            {%block subscribe %}
+                <div class="col-sm-12 col-md-12 well well-sm pull-right" id="id_subscribe" style="float:right">
+                    {% include './subscribe.html'%}
+                </div>
+            {% endblock subscribe%}
+        </div>
 
-
-              </div>
+    </div>
 
 {% block paginate %} {% include "./paginate.html" %} {% endblock paginate %}
 </div>
-    {% block footer %} {% include "./footer.html"%} {% endblock footer %}
+{% block footer %} {% include "./footer.html"%} {% endblock footer %}
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 {% extends "./news_list.html" %}
-{% block search %}
+{% block newslist %}
+<div class="col-sm-8">
 <div class="page card">
     <h4 class="page-title">Search</h4>
     <hr class="sm">
@@ -10,6 +11,6 @@
                 <button class="btn btn-primary" type="submit"> Search <i class="glyphicon glyphicon-ok"> </i> </button>
     </form>
 </div>
-{% endblock search %}
-{%block newslist%}
-{%endblock newslist%}
+</div>
+<br>
+{% endblock newslist %}
