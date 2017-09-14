@@ -57,7 +57,7 @@ $(document).ready(function(){
                     </div>
                {% endif %}
             {% endblock newslist %}
-
+            {% block categories %}
                 {% if categ_news %}
                       <div class="col-sm-4 col-md-4 list-group newscater">
                           {% for categories in categ_news %}
@@ -65,6 +65,7 @@ $(document).ready(function(){
                           {% endfor %}
                       </div>
                  {% endif %}
+            {% endblock categories %}
                 {% block addnews %}
                 {% if user.is_authenticated %}
                     <div class="col-sm-4 col-md-4 btn btn-link well well-sm" style="float:right">

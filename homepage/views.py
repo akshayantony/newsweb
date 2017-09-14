@@ -41,6 +41,11 @@ class CategoryView(generic.ListView):
     def get_queryset(self,**kwargs):
         return News.objects.filter(category__cname=self.kwargs['categ'])
 
+    def get_context_data(self, **kwargs):
+        context=super(CategoryView,self).get_context_data(**kwargs)
+        context['categ_news'] = NewsCategories.objects.all()
+        return context
+
 
 class SearchView(View):
 
@@ -69,9 +74,7 @@ class SearchView(View):
         if form.is_valid():
             search = form.cleaned_data.get('search_field')
             queryset = News.objects.filter(title__icontains=search)
-            print("----------------- ",queryset.count())
             page = request.GET.get('page', 1)
-            print("-------------pageeeeee ",page)
             paginator = Paginator(queryset, 3)
             try:
                 news = paginator.page(page)
