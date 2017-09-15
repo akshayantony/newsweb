@@ -187,7 +187,7 @@ class SubscribeEmailview(View):
         else:
             msg = "User already subscribed"
 
-        return render(request,self.template_name,{'form':form})
+        return render(request,'homepage/subscribesuccess.html',{'msg':msg})
 
 
     def get(self,request):
