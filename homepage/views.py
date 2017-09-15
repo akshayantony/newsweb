@@ -86,23 +86,34 @@ class SearchView(View):
         else:
             return render(request, 'homepage/search.html', {'form': form})
 
-def addNews(request):
-    if (request.method == 'POST'):
-        form=NewsForm(request.POST)
+class AddNews(View):
+    template_name='homepage/addnews.html'
+    form_class=NewsForm
 
+    def get(self,request,*args):
+        form=self.form_class()
+        return render(request,self.template_name,{'form':form})
+
+    def post(self,request,*args):
+        form=self.form_class(request.POST)
         if form.is_valid():
             news=form.save(commit=False)
-            news.author = request.user
+            news.author=request.user
             news.save()
             return redirect('homepage:news_list')
+        else:
+            pass
+        return render(request,self.template_name,{'form':form})
 
-    else:
-        form = NewsForm()
 
-    return render(request,'homepage/addnews.html',{'form':form})
+class AddImages(View):
+    template_name='homepage/addimages.html'
 
-def addimages(request,pk):
-    if request.method == 'POST':
+    def get(self,request,pk):
+        form=NewsImageForm()
+        return render(request,self.template_name,{'form':form})
+
+    def post(self,request,pk):
         form=NewsImageForm(request.POST,request.FILES)
         if form.is_valid():
             var=form.save(commit=False)
@@ -110,25 +121,58 @@ def addimages(request,pk):
             var.rel_news=newschk
             var.save()
             return redirect('homepage:newsdetail',pk=newschk.id)
-
-    else:
-        form = NewsImageForm()
-
-    return render(request,'homepage/addimages.html',{'form':form})
+        else:
+            pass
+        return render(request,self.template_name,{'form':form})
 
 
-def subscribeEmailview(request):
-    if request.method == 'POST':
-        form=SubscribeForm(request.POST)
+# def subscribeEmailview(request):
+#     if request.method == 'POST':
+#         form=SubscribeForm(request.POST)
+#         if form.is_valid():
+#             sub=form.save(commit=False)
+#             sub.token=get_random_string(length=32)
+#             sub.save()
+#             send_mail(
+#                 'Subscribe to Newsletter',
+#                 """ Hey ( %s ), this email  have been requested to subscribe DailyNews,
+#                 Please activate through the below link :  \
+#
+#                     https://dailynewssayone.herokuapp.com/activate/%s/    \
+#                 \
+#                     If it was not you please ignore      \
+#
+#                 From Dailycircle.com
+#                 """ % (sub.Email, sub.token),
+#                 'dailycirclenews@gmail.com',
+#                 [sub.Email],
+#
+#             )
+#             msg="Dear user , Request for subscription is succesful.Inorder to receive newsletter, Kindly activate it from your mail "
+#         else:
+#             msg="User already subscribed"
+#         return render(request,'homepage/subscribesuccess.html',
+#                                      {"msg":msg})
+#     else:
+#         form = SubscribeForm()
+#
+#     return render(request, 'homepage/subscribe.html', {'form': form})
+
+class SubscribeEmailview(View):
+    template_name='homepage/subscribe.html'
+
+    def post(self, request):
+        form = SubscribeForm(request.POST)
+
         if form.is_valid():
-            sub=form.save(commit=False)
-            sub.token=get_random_string(length=32)
+            sub = form.save(commit=False)
+            sub.token = get_random_string(length=32)
             sub.save()
             send_mail(
                 'Subscribe to Newsletter',
-                """ Hey ( %s ), this email  have been requested to subscribe DailyNews, 
+                """ Hey ( %s ), this email  have been requested to subscribe DailyNews,
                 Please activate through the below link :  \
-                
+
                     https://dailynewssayone.herokuapp.com/activate/%s/    \
                 \
                     If it was not you please ignore      \
@@ -139,16 +183,16 @@ def subscribeEmailview(request):
                 [sub.Email],
 
             )
-            msg="Dear user , Request for subscription is succesful.Inorder to receive newsletter, Kindly activate it from your mail "
+            msg = "Dear user , Request for subscription is succesful.Inorder to receive newsletter, Kindly activate it from your mail "
         else:
-            msg="User already subscribed"
-        return render(request,'homepage/subscribesuccess.html',
-                                     {"msg":msg})
+            msg = "User already subscribed"
 
-    else:
-        form = SubscribeForm()
+        return render(request,self.template_name,{'form':form})
 
-    return render(request, 'homepage/subscribe.html', {'form': form})
+
+    def get(self,request):
+        form=SubscribeForm()
+        return render(request, 'homepage/subscribe.html', {'form': form})
 
 
 def SubscribeActivate(request,token):
@@ -164,14 +208,20 @@ def SubscribeActivate(request,token):
         return render(request, 'homepage/subscribesuccess.html', {'msg': 'Subscription not succesful'})
 
 
-def Contactus(request):
-    if request.method == 'POST':
-        form=ContactForm(request.POST)
+class Contactus(View):
+    form_class=ContactForm
+    template_name='homepage/contactus.html'
+
+    def get(self, request):
+        form=self.form_class()
+        return render(request,self.template_name,{'form':form})
+
+    def post(self,request):
+        form=self.form_class(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('homepage:news_list')
         else:
             pass
-        return redirect('homepage:news_list')
-    else:
-        form = ContactForm()
-    return render(request, 'homepage/contactus.html', {'form': form})
+        return render(request,self.template_name,{'form':form})
+

@@ -1,5 +1,5 @@
 <div>
-<form method="post" action="{% url 'homepage:subscribe'%}" class="pull-right">
+<form method="post" action="{% url 'homepage:subscribe'%}">
     {% csrf_token  %}
        <div class="input-append newsletter-box text-center">
           <input type="email" name="Email" class=" text-center" placeholder="Email">
