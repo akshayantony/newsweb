@@ -18,8 +18,8 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
-
 <div>
+
     {% block navbar %} {% include "./navbar.html" %} {% endblock navbar %}
 
     <div class="row">
@@ -91,8 +91,9 @@ $(document).ready(function(){
     </div>
 
 {% block paginate %} {% include "./paginate.html" %} {% endblock paginate %}
-</div>
+
 {% block footer %} {% include "./footer.html"%} {% endblock footer %}
+</div>
 </body>
 
 </html>
