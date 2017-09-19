@@ -18,8 +18,8 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
+<div>
 
-<div class="container">
     {% block navbar %} {% include "./navbar.html" %} {% endblock navbar %}
 
     <div class="row">
@@ -60,7 +60,7 @@ $(document).ready(function(){
         {% endblock newslist %}
         {% block categories %}
         <div class="col-md-4 col-sm-4">
-        {% if categ_news %}
+            {% if categ_news %}
 
 
                 <div class="list-group newscater">
@@ -69,30 +69,31 @@ $(document).ready(function(){
                     {% endfor %}
                 </div>
 
-                {% endif %}
-                {% endblock categories %}
-                {% block addnews %}
-                {% if user.is_authenticated %}
+            {% endif %}
+         {% endblock categories %}
+         {% block addnews %}
+            {% if user.is_authenticated %}
                 <br><br><br>
                 <div class="col-sm-12 col-md-12 btn btn-link well well-sm" style="float:right">
                     <span class="glyphicon glyphicon-plus-sign">Add your own news? </span> <a href="{% url 'homepage:addnews' %}">Click here!</a>
                 </div>
-                {% endif %}
+            {% endif %}
 
                 <br><br><br><br><br>
-                {% endblock addnews %}
-            {%block subscribe %}
+         {% endblock addnews %}
+         {%block subscribe %}
                 <div class="col-sm-12 col-md-12 well well-sm pull-right" id="id_subscribe" style="float:right">
                     {% include './subscribe.html'%}
                 </div>
-            {% endblock subscribe%}
+         {% endblock subscribe%}
         </div>
 
     </div>
 
 {% block paginate %} {% include "./paginate.html" %} {% endblock paginate %}
-</div>
+
 {% block footer %} {% include "./footer.html"%} {% endblock footer %}
+</div>
 </body>
 
 </html>
